@@ -3,8 +3,8 @@ class CreateUser < ActiveRecord::Migration
     create_table :users do |t|
       t.string :name
       t.string :role
-      t.references :cohort, index: true
+      t.references :group, index: true
     end
-    add_foreign_key :users, :cohorts
+    add_foreign_key :users, :groups
   end
 end
