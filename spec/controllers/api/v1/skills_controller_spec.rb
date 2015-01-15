@@ -1,7 +1,5 @@
 describe Api::V1::SkillsController, type: :controller do
 
-  let(:skill) { create(:skill) }
-
   describe "index" do
 
     before do
@@ -10,7 +8,7 @@ describe Api::V1::SkillsController, type: :controller do
       2.times { create(:skill) }
     end
 
-    it "returns a json array of skills" do
+    it "returns a json array of all skills" do
       get :index, format: :json
 
       expect(response.status).to eq 200
