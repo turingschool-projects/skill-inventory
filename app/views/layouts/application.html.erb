@@ -4,14 +4,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Skills Inventory</title>
-    <%= stylesheet_link_tag    "application" %>
-    <%= javascript_include_tag "vendor/modernizr" %>
     <%= csrf_meta_tags %>
   </head>
-
   <body>
+    <%= image_tag('sillinventorylogo.png') %>
     <%= yield %>
     <%= javascript_include_tag "application" %>
-    <script>$('.flash').delay(4000).fadeOut(800);</script>
   </body>
 </html>
