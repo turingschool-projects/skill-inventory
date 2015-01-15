@@ -1,12 +1,10 @@
-class Api::V1::SkillsController < ApplicationController
+class Api::V1::SkillsController < Api::V1::BaseController
   respond_to :json
+  # before_filter :require_signin!
 
   def index
-    @skills = Skill.all
-    # binding.pry
-    # skills = { skill: Skill.all }
-    respond_with :api, :v1, @skills
-    redirect_to(api_v1_skills_url(@skills))
+    featured = params[:featured]
+    respond_with featured ? Skill.where(featured: featured) : Skill.all
   end
 
 end
