@@ -9,6 +9,6 @@ class Api::V1::SkillsController < Api::V1::BaseController
 
   def index_of_skills
     featured = params[:featured]
-    featured ? Skill.where(featured: featured) : Skill.all
+    featured ? Skill.featured : Skill.all
   end
 end

@@ -1,4 +1,5 @@
 class Skill < ActiveRecord::Base
-  belongs_to :group
-  has_many :tags
+  def self.featured
+    where(featured: true)
+  end
 end
