@@ -1,25 +1,24 @@
-describe Api::V1::SkillsController, type: :controller do
+describe Api::V1::SkillsController do
 
   describe "index" do
 
-    before do
-      FactoryGirl.reload
-      2.times { create(:skill, featured: true) }
-      2.times { create(:skill) }
-    end
+    it "returns a json array of skills" do
+      create(:skill, name: "tdd")
 
-    it "returns a json array of all skills" do
       get :index, format: :json
 
       expect(response.status).to eq 200
-      expect(json_last_skill["name"]).to eq("skill_4")
+      expect(json_last_skill["name"]).to eq("tdd")
     end
 
     it "returns a json array of featured skills" do
+      create(:skill, name: "whatever", featured: false)
+      create(:skill, name: "rspec", featured: true)
+
       get :index, format: :json, featured: true
 
       expect(response.status).to eq 200
-      expect(json_last_skill["name"]).to eq("skill_2")
+      expect(json_last_skill["name"]).to eq("rspec")
     end
   end
 
