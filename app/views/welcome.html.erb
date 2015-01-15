@@ -1,0 +1,18 @@
+<div id="login-form">
+  <%= form_tag('/sessions', method: 'create') %>
+    <%= label_tag :username %>
+    <%= text_field_tag :username, 'Github Username' %>
+    <%= password_field_tag :password, 'password' %>
+    <%= submit_tag 'Login' %>
+  <% end %>
+</div>
+
+<div id="login-form">
+  <form {{action 'authenticate' on='submit'}}>
+    <label for="identification">Login</label>
+    {{input value=identification placeholder='Enter Login'}}
+    <label for="password">Password</label>
+    {{input value=password placeholder='Enter Password' type='password'}}
+    <button type="submit">Login</button>
+  </form>
+</div>
