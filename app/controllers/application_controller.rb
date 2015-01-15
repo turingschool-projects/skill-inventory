@@ -7,9 +7,9 @@ class ApplicationController < ActionController::Base
 
   def require_signin!
     render status: 401,
-          json: {
-            success: false,
-            info: "Unauthorized"
-          } unless current_user
+           json: {
+             success: false,
+             info: "Unauthorized"
+           } unless current_user
   end
 end

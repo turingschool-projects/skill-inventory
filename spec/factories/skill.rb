@@ -3,6 +3,6 @@ FactoryGirl.define do
 
   factory :skill do
     name { generate(:name) }
-    featured false           
+    featured false 
   end
 end
