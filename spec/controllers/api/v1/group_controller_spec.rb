@@ -1,4 +1,4 @@
-describe Api::V1::GroupsController, type: :controller do
+describe Api::V1::GroupsController do
 
   describe "index" do
 
