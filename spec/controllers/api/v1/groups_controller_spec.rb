@@ -9,13 +9,13 @@ describe Api::V1::GroupsController do
       get :index, format: :json
 
       expect(response.status).to eq 200
-      expect(json_last_group["name"]).to eq("1409")
+      expect(json_last_group_name).to eq("1409")
     end
   end
 
   private
 
-  def json_last_group
-    parsed_json_response_body["group"].last
+  def json_last_group_name
+    parsed_json_response_body["group"].last["name"]
   end
 end

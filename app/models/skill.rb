@@ -1,5 +1,7 @@
 class Skill < ActiveRecord::Base
-  validates :name, uniqueness: true, presence: true
+  belongs_to :group
+
+  validates :name, presence: true
   validates :featured, inclusion: [true, false]
 
   def self.featured
