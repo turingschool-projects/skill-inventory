@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150114181755) do
+ActiveRecord::Schema.define(version: 20150119215710) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,8 +29,8 @@ ActiveRecord::Schema.define(version: 20150114181755) do
   add_index "skill_tags", ["tag_id"], name: "index_skill_tags_on_tag_id", using: :btree
 
   create_table "skills", force: :cascade do |t|
-    t.string  "name"
-    t.boolean "featured"
+    t.string  "name",     default: "",    null: false
+    t.boolean "featured", default: false
   end
 
   create_table "tags", force: :cascade do |t|
