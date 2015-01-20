@@ -4,4 +4,6 @@ Rails.application.routes.draw do
       resources :skills, defaults: { format: :json }
     end
   end
+
+  get '/auth/:provider/callback', to: 'sessions#create', as: 'login'
 end
