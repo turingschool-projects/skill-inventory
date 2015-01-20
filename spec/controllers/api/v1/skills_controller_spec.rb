@@ -24,14 +24,7 @@ describe Api::V1::SkillsController do
 
   describe "create" do
 
-    it "creates a skill" do
-      post :create, format: :json, skill: { name: "created" }
-
-      expect(response.status).to eq 201
-      expect(json_response_created_skill_name).to eq("created")
-    end
-
-    it "creates a skill with full parameters" do
+    it "creates a skill (with full parameters)" do
       group = create(:group)
       post :create, format: :json, skill: {
                                             name: "created",
