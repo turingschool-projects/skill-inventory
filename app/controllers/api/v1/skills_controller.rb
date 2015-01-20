@@ -5,6 +5,15 @@ class Api::V1::SkillsController < Api::V1::BaseController
     render json: { skill: index_of_skills }
   end
 
+  def show
+    skill = Skill.find(params[:id])
+    render json: { skill: skill }
+
+  rescue ActiveRecord::RecordNotFound
+    skill = "record not found"
+    render status: 404, json: { skill: skill }
+  end
+
   def create
     skill = Skill.new(skill_params)
 

@@ -22,6 +22,24 @@ describe Api::V1::SkillsController do
     end
   end
 
+  describe "show" do
+
+    it "returns an individual skill" do
+      skill = create(:skill, name: "show_skill")
+
+      get :show, format: :json, id: skill.id
+
+      expect(response.status).to eq 200
+      expect(json_response_skill_name).to eq("show_skill")
+    end
+
+    it "returns a 404 if skill does not exist" do
+      get :show, format: :json, id: 1
+
+      expect(response.status).to eq 404
+    end
+  end
+
   describe "create" do
 
     it "creates a skill (with full parameters)" do
@@ -33,7 +51,7 @@ describe Api::V1::SkillsController do
                                           }
 
       expect(response.status).to eq 201
-      expect(json_response_created_skill_name).to eq("created")
+      expect(json_response_skill_name).to eq("created")
       expect(json_response_created_skill_featured).to eq(true)
       expect(json_response_created_skill_group_id).to eq(group.id)
     end
@@ -48,24 +66,28 @@ describe Api::V1::SkillsController do
 
   private
 
-  def json_response_last_skill_name
-    parsed_json_response_body["skill"].last["name"]
+  def json_skill
+    parsed_json_response_body["skill"]
   end
 
-  def json_response_created_skill_name
-    parsed_json_response_body["skill"]["name"]
+  def json_response_last_skill_name
+    json_skill.last["name"]
+  end
+
+  def json_response_skill_name
+    json_skill["name"]
   end
 
   def json_response_created_skill_featured
-    parsed_json_response_body["skill"]["featured"]
+    json_skill["featured"]
   end
 
   def json_response_created_skill_group_id
-    parsed_json_response_body["skill"]["group_id"]
+    json_skill["group_id"]
   end
 
   def json_response_uniquenss_error_message
-    parsed_json_response_body["skill"]["errors"]
+    json_skill["errors"]
   end
 
 end
