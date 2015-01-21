@@ -12,3 +12,4 @@
 !/log/.keep
 /tmp
 npm-debug.log
+/public/assets
