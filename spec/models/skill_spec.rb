@@ -13,10 +13,13 @@ describe Skill do
 
   describe "relations" do
     it "belongs to group" do
-      group = create(:group)
-      skill = create(:skill, group: group)
+      skill = create(:skill)
 
-      expect(skill.group).to eq(group)
+      expect(skill.group).to be_a(Group)
+    end
+
+    it "must belong to a group" do
+      expect { create(:skill, group: nil) }.to raise_error(ActiveRecord::RecordInvalid)
     end
   end
 

@@ -3,6 +3,7 @@ class Skill < ActiveRecord::Base
 
   validates :name, presence: true
   validates :featured, inclusion: [true, false]
+  validates :group, presence: true
 
   def self.featured
     where(featured: true)
