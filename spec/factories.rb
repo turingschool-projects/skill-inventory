@@ -5,6 +5,7 @@ FactoryGirl.define do
   factory :skill do
     name { generate(:skill_name) }
     featured false
+    group
   end
 
   factory :group do
