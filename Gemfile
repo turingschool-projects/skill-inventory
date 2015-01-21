@@ -12,6 +12,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'responders', '~> 2.0'
 gem 'rails_12factor', group: :production
 gem 'octokit'
+gem 'factory_girl_rails'
 
 group :development, :test do
   gem 'byebug'
@@ -24,5 +25,4 @@ end
 
 group :test do
   gem 'rspec-rails'
-  gem 'factory_girl_rails'
 end
