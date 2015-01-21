@@ -9,6 +9,7 @@ gem 'jquery-rails'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'responders', '~> 2.0'
+gem 'octokit'
 
 group :development, :test do
   gem 'byebug'
@@ -17,6 +18,7 @@ group :development, :test do
   gem 'pry'
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'dotenv-rails'
 end
 
 group :test do
