@@ -9,7 +9,7 @@ class GithubAuthenticator
   end
 
   def name
-    github_user[:login]
+    github_user[:name]
   end
 
   private
