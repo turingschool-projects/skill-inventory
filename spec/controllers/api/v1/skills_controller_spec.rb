@@ -24,14 +24,7 @@ describe Api::V1::SkillsController do
 
   describe "create" do
 
-    it "creates a skill" do
-      post :create, format: :json, skill: { name: "created" }
-
-      expect(response.status).to eq 201
-      expect(json_response_created_skill_name).to eq("created")
-    end
-
-    it "creates a skill with full parameters" do
+    it "creates a skill (with full parameters)" do
       group = create(:group)
       post :create, format: :json, skill: {
                                             name: "created",
@@ -40,39 +33,98 @@ describe Api::V1::SkillsController do
                                           }
 
       expect(response.status).to eq 201
-      expect(json_response_created_skill_name).to eq("created")
-      expect(json_response_created_skill_featured).to eq(true)
-      expect(json_response_created_skill_group_id).to eq(group.id)
+      expect(json_response_skill_name).to eq("created")
+      expect(json_response_skill_featured).to eq(true)
+      expect(json_response_skill_group_id).to eq(group.id)
     end
 
     it "responds with error messages if a skill fails to create" do
       post :create, format: :json, skill: { name: "" }
 
       expect(response.status).to eq 422
-      expect(json_response_uniquenss_error_message).to eq(["Name can't be blank"])
+      expect(json_response_error_message).to eq(["Name can't be blank"])
+    end
+  end
+
+  describe "show" do
+
+    it "returns an individual skill" do
+      skill = create(:skill, name: "show_skill")
+
+      get :show, format: :json, id: skill.id
+
+      expect(response.status).to eq 200
+      expect(json_response_skill_name).to eq("show_skill")
+    end
+  end
+
+  describe "update" do
+
+    it "updates a skill" do
+      group_1 = create(:group, name: "before_updated_group")
+      group_2 = create(:group, name: "after_updated_group")
+      skill = create(:skill, name: "before_updated_name", group: group_1)
+
+      put :update, format: :json,
+                   id: skill.id,
+                   skill: {
+                            name: "after_updated_name",
+                            featured: true,
+                            group: group_2.name
+                          }
+
+      expect(response.status).to eq 200
+      expect(json_response_skill_name).to eq("after_updated_name")
+      expect(json_response_skill_featured).to eq(true)
+      expect(json_response_skill_group_id).to eq(group_2.id)
+    end
+
+    it "responds with error messages if a skill fails to update" do
+      skill = create(:skill)
+
+      put :update, format: :json, id: skill.id, skill: { name: "" }
+
+      expect(response.status).to eq 422
+      expect(json_response_error_message).to eq(["Name can't be blank"])
+    end
+  end
+
+  describe "destroy" do
+
+    it "destroys a skill" do
+      skill = create(:skill)
+
+      delete :destroy, format: :json, id: skill.id
+
+      expect(response.status).to eq 200
+      expect(json_response_skill_name).to eq(skill.name)
     end
   end
 
   private
 
+  def json_skill
+    parsed_json_response_body["skill"]
+  end
+
   def json_response_last_skill_name
-    parsed_json_response_body["skill"].last["name"]
+    json_skill.last["name"]
   end
 
-  def json_response_created_skill_name
-    parsed_json_response_body["skill"]["name"]
+  def json_response_skill_name
+    json_skill["name"]
   end
 
-  def json_response_created_skill_featured
-    parsed_json_response_body["skill"]["featured"]
+  def json_response_skill_featured
+    json_skill["featured"]
   end
 
-  def json_response_created_skill_group_id
-    parsed_json_response_body["skill"]["group_id"]
+  def json_response_skill_group_id
+    json_skill["group_id"]
   end
 
-  def json_response_uniquenss_error_message
-    parsed_json_response_body["skill"]["errors"]
+  def json_response_error_message
+    json_skill["errors"]
   end
 
 end
