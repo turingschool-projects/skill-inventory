@@ -1,9 +1,16 @@
-skills = Skill.create([{ name: 'skill1', featured: true },
-              { name: 'skill2', featured: true },
-              { name: 'skill3', featured: false },
-              { name: 'skill4', featured: true },
-              { name: 'skill5', featured: false },
-             ])
+require "factory_girl_rails"
 
-puts " Successfully added #{skills.count} skills from seed data. ".center(70, '~*~')
-puts
+FactoryGirl.create(:skill, name: "skill2", featured: true)
+FactoryGirl.create(:skill, name: "skill2", featured: true)
+FactoryGirl.create(:skill, name: "skill2", featured: false)
+FactoryGirl.create(:skill, name: "skill2", featured: true)
+FactoryGirl.create(:skill, name: "skill2", featured: false)
+
+puts " Successfully added skills from seed data. ".center(70, '~*~')
+
+FactoryGirl.create(:group, name: "1407")
+FactoryGirl.create(:group, name: "1409")
+FactoryGirl.create(:group, name: "1410")
+FactoryGirl.create(:group, name: "1412")
+
+puts " Successfully added groups from seed data. ".center(70, '~*~')
