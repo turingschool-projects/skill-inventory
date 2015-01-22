@@ -13,3 +13,4 @@
 /tmp
 npm-debug.log
 /public/assets
+.env
