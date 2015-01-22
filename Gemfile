@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+ruby '2.1.4'
 
 gem 'rails', '4.2.0'
 gem 'rack-cors', require: 'rack/cors'
@@ -10,8 +11,9 @@ gem 'jquery-rails'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'responders', '~> 2.0'
-gem 'octokit'
 gem 'rails_12factor', group: :production
+gem 'octokit'
+gem 'factory_girl_rails'
 
 group :development, :test do
   gem 'byebug'
@@ -20,10 +22,8 @@ group :development, :test do
   gem 'pry'
   gem 'better_errors'
   gem 'binding_of_caller'
-  gem 'dotenv-rails'
 end
 
 group :test do
   gem 'rspec-rails'
-  gem 'factory_girl_rails'
 end
