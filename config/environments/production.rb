@@ -76,4 +76,13 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  config.assets.enabled = false
+
+  config.middleware.use Rack::Cors do
+    allow do
+      origins 'http://skillinventory.divshot.io'
+      resource '*', headers: :any, methods: [:get, :post, :put, :delete]
+    end
+  end
 end
