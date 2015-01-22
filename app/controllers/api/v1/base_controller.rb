@@ -1,6 +1,6 @@
 class Api::V1::BaseController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
-  skip_before_filter  :verify_authenticity_token
+  skip_before_filter :verify_authenticity_token
 
   private
 
