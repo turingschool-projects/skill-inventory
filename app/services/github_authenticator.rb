@@ -42,17 +42,17 @@ class GithubAuthenticator
     http.request(req)
   end
 
-  def http
-    http = Net::HTTP.new(uri.host, uri.port)
-    http.use_ssl = true
-    http
-  end
-
   def req
     req = Net::HTTP::Post.new(uri.path)
     req.set_form_data(post_data)
     req["Accept"] = "application/json"
     req
+  end
+
+  def http
+    http = Net::HTTP.new(uri.host, uri.port)
+    http.use_ssl = true
+    http
   end
 
   def uri
