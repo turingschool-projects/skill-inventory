@@ -6,8 +6,8 @@ describe Api::V1::SkillsController do
 
       get :index, format: :json
 
-      expect(response).to have_http_status(:ok)
       json_response = JsonResponse.new(response)
+      expect(json_response.response).to have_http_status(:ok)
       expect(json_response.last_skill_name).to eq("tdd")
     end
 
@@ -17,8 +17,8 @@ describe Api::V1::SkillsController do
 
       get :index, format: :json, featured: true
 
-      expect(response).to have_http_status(:ok)
       json_response = JsonResponse.new(response)
+      expect(json_response.response).to have_http_status(:ok)
       expect(json_response.last_skill_name).to eq("rspec")
     end
   end
@@ -31,8 +31,8 @@ describe Api::V1::SkillsController do
 
       post :create, format: :json, skill: skill_attributes
 
-      expect(response).to have_http_status(:created)
       json_response = JsonResponse.new(response)
+      expect(json_response.response).to have_http_status(:created)
       expect(json_response.skill_name).to eq(skill_attributes[:name])
       expect(json_response.skill_featured).to eq(skill_attributes[:featured])
       expect(json_response.skill_section_id).to eq(section.id)
@@ -41,8 +41,8 @@ describe Api::V1::SkillsController do
     it "responds with error messages if a skill fails to create" do
       post :create, format: :json, skill: { name: "" }
 
-      expect(response).to have_http_status(:unprocessable_entity)
       json_response = JsonResponse.new(response)
+      expect(json_response.response).to have_http_status(:unprocessable_entity)
       expect(json_response.error_message).to eq(["Name can't be blank",
                                                  "Section can't be blank"])
     end
@@ -54,8 +54,8 @@ describe Api::V1::SkillsController do
 
       get :show, format: :json, id: skill.id
 
-      expect(response).to have_http_status(:ok)
       json_response = JsonResponse.new(response)
+      expect(json_response.response).to have_http_status(:ok)
       expect(json_response.skill_name).to eq("show_skill")
     end
   end
@@ -74,8 +74,8 @@ describe Api::V1::SkillsController do
                             section: section_2.number
                           }
 
-      expect(response).to have_http_status(:ok)
       json_response = JsonResponse.new(response)
+      expect(json_response.response).to have_http_status(:ok)
       expect(json_response.skill_name).to eq("after_updated_name")
       expect(json_response.skill_featured).to eq(true)
       expect(json_response.skill_section_id).to eq(section_2.id)
@@ -86,8 +86,8 @@ describe Api::V1::SkillsController do
 
       put :update, format: :json, id: skill.id, skill: { name: "" }
 
-      expect(response).to have_http_status(:unprocessable_entity)
       json_response = JsonResponse.new(response)
+      expect(json_response.response).to have_http_status(:unprocessable_entity)
       expect(json_response.error_message).to eq(["Name can't be blank"])
     end
   end
@@ -98,8 +98,8 @@ describe Api::V1::SkillsController do
 
       delete :destroy, format: :json, id: skill.id
 
-      expect(response).to have_http_status(:ok)
       json_response = JsonResponse.new(response)
+      expect(json_response.response).to have_http_status(:ok)
       expect(json_response.skill_name).to eq(skill.name)
     end
   end
