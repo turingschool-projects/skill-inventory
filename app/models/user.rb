@@ -5,14 +5,6 @@ class User < ActiveRecord::Base
 
   before_create :generate_token
 
-  def student?
-    role == "student"
-  end
-
-  def instructor?
-    role == "instructor"
-  end
-
   protected
 
   def generate_token
