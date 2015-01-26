@@ -28,13 +28,13 @@ describe Api::V1::SkillsController do
   end
 
   describe "create" do
-    let!(:group){ create(:group) }
+    let!(:group) { create(:group) }
 
     it "creates a skill (with full parameters)" do
       post :create, format: :json, skill: {
-                                            name: "created",
-                                            featured: true,
-                                            group: group.name
+                                             name: "created",
+                                             featured: true,
+                                             group: group.name
                                           }
 
       expect(response.status).to eq 201
@@ -45,14 +45,14 @@ describe Api::V1::SkillsController do
 
     context "when skill is invalid" do
       it "returns a 422 status code" do
-        post :create, format: :json, skill: {name: nil}
+        post :create, format: :json, skill: { name: nil }
         expect(response.status).to eq 422
       end
 
       it "responds with error messages if name missing" do
         post :create, format: :json, skill: {
-                                              name: "",
-                                              group: group.name
+                                               name: "",
+                                               group: group.name
                                             }
 
         expect(json_response_error_message).to eq(["Name can't be blank"])
@@ -70,7 +70,7 @@ describe Api::V1::SkillsController do
   end
 
   describe "show" do
-    let!(:skill){ create(:skill, name: "show_skill") }
+    let!(:skill) { create(:skill, name: "show_skill") }
 
     it "returns status 200 on success" do
       get :show, format: :json, id: skill.id
@@ -86,7 +86,7 @@ describe Api::V1::SkillsController do
   end
 
   describe "update" do
-    let!(:skill){ create(:skill) }
+    let!(:skill) { create(:skill) }
 
     it "returns status 200 on success" do
       put :update, format: :json, id: skill.id, skill: { name: "skill" }
@@ -125,7 +125,7 @@ describe Api::V1::SkillsController do
   end
 
   describe "destroy" do
-    let!(:skill){ create(:skill) }
+    let!(:skill) { create(:skill) }
 
     it "returns status 200 on success" do
       delete :destroy, format: :json, id: skill.id
