@@ -24,6 +24,12 @@ describe Api::V1::SkillsController do
 
   describe "create" do
 
+    context "with restrictions" do
+      it "allows instructors to create skills"
+
+      it "prevents students from creating skills"
+    end
+
     it "creates a skill (with full parameters)" do
       section = create(:section)
       post :create, format: :json, skill: {
