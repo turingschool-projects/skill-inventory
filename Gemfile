@@ -15,6 +15,7 @@ gem 'rails_12factor', group: :production
 gem 'octokit'
 gem 'factory_girl_rails'
 
+
 group :development, :test do
   gem 'byebug'
   gem 'web-console', '~> 2.0'
@@ -22,6 +23,7 @@ group :development, :test do
   gem 'pry'
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'dotenv-rails'
 end
 
 group :test do
