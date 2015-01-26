@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
-  protect_from_forgery with: :null_session
+  protect_from_forgery
+  skip_before_action :verify_authenticity_token, if: :json_request?
   before_filter :cors
 
   def current_user
@@ -17,5 +18,11 @@ class ApplicationController < ActionController::Base
   def cors
     response.headers.merge! 'Access-Control-Allow-Origin' => '*', 'Access-Control-Allow-Methods' => 'POST, PUT, GET, DELETE', 'Access-Control-Allow-Headers' => 'Origin, Accept, Content-Type'
 end
+
+  protected
+
+  def json_request?
+    request.format.json?
+  end
 
 end
