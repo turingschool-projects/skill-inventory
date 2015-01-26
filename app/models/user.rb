@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   belongs_to :group
   validates :role, inclusion: { in: %w(student instructor),
-    message: "%{value} is not a valid role" }
+                                message: "%{value} is not a valid role" }
 
   before_create :generate_token
 
