@@ -12,14 +12,14 @@ describe Skill do
   end
 
   describe "relations" do
-    it "belongs to group" do
+    it "belongs to section" do
       skill = create(:skill)
 
-      expect(skill.group).to be_a(Group)
+      expect(skill.section).to be_a(Section)
     end
 
-    it "must belong to a group" do
-      expect { create(:skill, group: nil) }.to raise_error(ActiveRecord::RecordInvalid)
+    it "must belong to a section" do
+      expect { create(:skill, section: nil) }.to raise_error(ActiveRecord::RecordInvalid)
     end
   end
 
