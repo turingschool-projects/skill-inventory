@@ -1,5 +1,4 @@
 class Api::V1::SessionsController < Api::V1::BaseController
-  skip_before_action :verify_authenticity_token
 
   def create
     github_authenticator = GithubAuthenticator.new(github_auth_code)
