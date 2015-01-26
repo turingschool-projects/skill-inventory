@@ -6,11 +6,11 @@ FactoryGirl.define do
   factory :skill do
     name { generate(:skill_name) }
     featured false
-    group
+    section
   end
 
-  factory :group do
-    name { generate(:group_name) }
+  factory :section do
+    number 1
   end
 
   factory :user do

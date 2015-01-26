@@ -22,8 +22,11 @@ group :development, :test do
   gem 'pry'
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'dotenv-rails'
 end
 
 group :test do
   gem 'rspec-rails'
+  gem 'capybara'
+  gem 'launchy'
 end

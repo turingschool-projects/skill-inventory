@@ -31,17 +31,17 @@ describe Api::V1::SkillsController do
     end
 
     it "creates a skill (with full parameters)" do
-      group = create(:group)
+      section = create(:section)
       post :create, format: :json, skill: {
                                             name: "created",
                                             featured: true,
-                                            group: group.name
+                                            section: section.number
                                           }
 
       expect(response.status).to eq 201
       expect(json_response_skill_name).to eq("created")
       expect(json_response_skill_featured).to eq(true)
-      expect(json_response_skill_group_id).to eq(group.id)
+      expect(json_response_skill_section_id).to eq(section.id)
     end
 
     it "responds with error messages if a skill fails to create" do
@@ -67,22 +67,22 @@ describe Api::V1::SkillsController do
   describe "update" do
 
     it "updates a skill" do
-      group_1 = create(:group, name: "before_updated_group")
-      group_2 = create(:group, name: "after_updated_group")
-      skill = create(:skill, name: "before_updated_name", group: group_1)
+      section_1 = create(:section, number: 1)
+      section_2 = create(:section, number: 2)
+      skill = create(:skill, name: "before_updated_name", section: section_1)
 
       put :update, format: :json,
                    id: skill.id,
                    skill: {
                             name: "after_updated_name",
                             featured: true,
-                            group: group_2.name
+                            section: section_2.number
                           }
 
       expect(response.status).to eq 200
       expect(json_response_skill_name).to eq("after_updated_name")
       expect(json_response_skill_featured).to eq(true)
-      expect(json_response_skill_group_id).to eq(group_2.id)
+      expect(json_response_skill_section_id).to eq(section_2.id)
     end
 
     it "responds with error messages if a skill fails to update" do
@@ -125,8 +125,8 @@ describe Api::V1::SkillsController do
     json_skill["featured"]
   end
 
-  def json_response_skill_group_id
-    json_skill["group_id"]
+  def json_response_skill_section_id
+    json_skill["section_id"]
   end
 
   def json_response_error_message
