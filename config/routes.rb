@@ -6,4 +6,6 @@ Rails.application.routes.draw do
       resources :sessions, only: [:create]
     end
   end
+
+  get '/auth/:provider/callback', to: 'sessions#create', as: 'login'
 end
