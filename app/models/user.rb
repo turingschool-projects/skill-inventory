@@ -1,4 +1,7 @@
 class User < ActiveRecord::Base
+  has_many :ratings
+  has_many :skills, through: :ratings
+
   belongs_to :cohort
 
   before_create :generate_token
