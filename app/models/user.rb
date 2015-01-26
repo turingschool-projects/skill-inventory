@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  belongs_to :cohort
+  belongs_to :group
 
   before_create :generate_token
 
