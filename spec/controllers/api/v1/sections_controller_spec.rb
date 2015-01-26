@@ -3,8 +3,8 @@ describe Api::V1::SectionsController do
   describe "index" do
 
     it "returns a json array of all sections" do
-      create(:sections, number: 1)
-      create(:sections, number: 2)
+      create(:section, number: 1)
+      create(:section, number: 2)
 
       get :index, format: :json
 

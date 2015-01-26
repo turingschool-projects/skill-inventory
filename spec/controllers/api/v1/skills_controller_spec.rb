@@ -35,7 +35,7 @@ describe Api::V1::SkillsController do
       expect(response.status).to eq 201
       expect(json_response_skill_name).to eq("created")
       expect(json_response_skill_featured).to eq(true)
-      expect(json_response_skill__id).to eq(section.id)
+      expect(json_response_skill_section_id).to eq(section.id)
     end
 
     it "responds with error messages if a skill fails to create" do
