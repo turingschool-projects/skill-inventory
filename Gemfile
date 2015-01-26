@@ -15,7 +15,6 @@ gem 'rails_12factor', group: :production
 gem 'octokit'
 gem 'factory_girl_rails'
 
-
 group :development, :test do
   gem 'byebug'
   gem 'web-console', '~> 2.0'
@@ -28,4 +27,6 @@ end
 
 group :test do
   gem 'rspec-rails'
+  gem 'capybara'
+  gem 'launchy'
 end
