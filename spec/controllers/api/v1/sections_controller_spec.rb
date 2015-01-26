@@ -8,14 +8,28 @@ describe Api::V1::SectionsController do
 
       get :index, format: :json
 
-      expect(response.status).to eq 200
-      expect(json_last_section_number).to eq(2)
+      expect(response).to have_http_status(:ok)
+      json_response = JsonResponse.new(response)
+      expect(json_response.section_number).to eq(2)
     end
   end
 
   private
 
-  def json_last_section_number
-    parsed_json_response_body["section"].last["number"]
+  class JsonResponse
+    attr_reader :response
+
+    def initialize(response)
+      @response = response
+    end
+
+    def response_body
+      JSON.parse(response.body)
+    end
+
+    def section_number
+      response_body["section"].last["number"]
+    end
+
   end
 end
