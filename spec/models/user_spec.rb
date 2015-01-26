@@ -1,9 +1,9 @@
 require 'spec_helper'
 
 describe User do
-  it "knows if it is a student" do
+
+  it "sets default role to student" do
     user = User.new
-    user.role = "student"
 
     expect(user.student?).to be_truthy
   end
