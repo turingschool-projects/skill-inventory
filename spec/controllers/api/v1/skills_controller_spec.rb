@@ -1,7 +1,6 @@
 describe Api::V1::SkillsController do
 
   describe "index" do
-
     it "returns a json array of skills" do
       create(:skill, name: "tdd")
 
@@ -23,18 +22,16 @@ describe Api::V1::SkillsController do
   end
 
   describe "create" do
-
     it "creates a skill (with full parameters)" do
       group = create(:group)
-      post :create, format: :json, skill: {
-                                            name: "created",
-                                            featured: true,
-                                            group: group.name
-                                          }
+      skill_attributes = attributes_for(:skill)
+      skill_attributes[:group] = group.name
+
+      post :create, format: :json, skill: skill_attributes
 
       expect(response.status).to eq 201
-      expect(json_response_skill_name).to eq("created")
-      expect(json_response_skill_featured).to eq(true)
+      expect(json_response_skill_name).to eq(skill_attributes[:name])
+      expect(json_response_skill_featured).to eq(skill_attributes[:featured])
       expect(json_response_skill_group_id).to eq(group.id)
     end
 
@@ -42,24 +39,22 @@ describe Api::V1::SkillsController do
       post :create, format: :json, skill: { name: "" }
 
       expect(response.status).to eq 422
-      expect(json_response_error_message).to eq(["Name can't be blank"])
+      expect(json_response_error_message).to eq(["Name can't be blank", "Group can't be blank"])
     end
   end
 
   describe "show" do
-
     it "returns an individual skill" do
       skill = create(:skill, name: "show_skill")
 
       get :show, format: :json, id: skill.id
 
-      expect(response.status).to eq 200
+      expect(response).to have_http_status(:ok)
       expect(json_response_skill_name).to eq("show_skill")
     end
   end
 
   describe "update" do
-
     it "updates a skill" do
       group_1 = create(:group, name: "before_updated_group")
       group_2 = create(:group, name: "after_updated_group")
@@ -90,7 +85,6 @@ describe Api::V1::SkillsController do
   end
 
   describe "destroy" do
-
     it "destroys a skill" do
       skill = create(:skill)
 

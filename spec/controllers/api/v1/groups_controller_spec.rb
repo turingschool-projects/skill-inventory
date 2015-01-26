@@ -1,7 +1,6 @@
 describe Api::V1::GroupsController do
 
   describe "index" do
-
     it "returns a json array of all groups" do
       create(:group, name: "whatever")
       create(:group, name: "1409")
