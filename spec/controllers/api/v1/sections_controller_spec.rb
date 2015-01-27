@@ -3,19 +3,14 @@ describe Api::V1::SectionsController do
   describe "index" do
 
     it "returns a json array of all sections" do
-      create(:section, number: 1)
-      create(:section, number: 2)
+      section1 = create(:section)
+      section2 = create(:section)
 
       get :index, format: :json
 
-      expect(response.status).to eq 200
-      expect(json_last_section_number).to eq(2)
+      json_response = JsonResponse.new(response)
+      expect(json_response.headers).to have_http_status(:ok)
+      expect(json_response.section_name).to eq(section2.name)
     end
-  end
-
-  private
-
-  def json_last_section_number
-    parsed_json_response_body["section"].last["number"]
   end
 end

@@ -1,5 +1,4 @@
 class Api::V1::SessionsController < Api::V1::BaseController
-
   def create
     github_authenticator = GithubAuthenticator.new(github_auth_code)
     user_factory = UserFactory.new(github_authenticator)
