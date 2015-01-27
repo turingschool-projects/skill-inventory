@@ -58,6 +58,10 @@ class JsonResponse
     json_tag["name"]
   end
 
+  def first_tag_name
+    json_tag.first["name"]
+  end
+
   def last_tag_name
     json_tag.last["name"]
   end

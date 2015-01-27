@@ -6,14 +6,14 @@ class Api::V1::TagsController < Api::V1::BaseController
   end
 
   def create
-    tag = Tag.new(tag_params)
-    tag.skills << Skill.where(id: params[:tag][:skills])
+    @tag = Tag.new(tag_params)
+    @tag.skills << Skill.where(id: params[:tag][:skills])
 
-    if tag.save
-      render status: 201, json: { tag: {id: tag.id, name: tag.name, skills: tag.skills.map(&:id)} }
+    if @tag.save
+      render status: 201, json: { tag: tag_json }
     else
       render status: 422,
-      json: { tag: { errors: tag.errors.full_messages } }
+      json: { tag: { errors: @tag.errors.full_messages } }
     end
   end
 
@@ -23,15 +23,15 @@ class Api::V1::TagsController < Api::V1::BaseController
   end
 
   def update
-    tag = Tag.find(params[:id])
-    tag.skills =
+    @tag = Tag.find(params[:id])
+    @tag.skills =
     Skill.where(name: params[:skill]).first if params[:skill]
 
-    if tag.update_attributes(tag_params)
-      render status: 200, json: { tag: {id: tag.id, name: tag.name, skills: tag.skills.map(&:id)} }
+    if @tag.update_attributes(tag_params)
+      render status: 200, json: { tag: tag_json }
     else
       render status: 422,
-      json: { tag: { errors: tag.errors.full_messages } }
+      json: { tag: { errors: @tag.errors.full_messages } }
     end
   end
 
@@ -46,5 +46,11 @@ class Api::V1::TagsController < Api::V1::BaseController
 
   def tag_params
     params.require(:tag).permit(:name)
+  end
+
+  def tag_json
+    { id: @tag.id,
+      name: @tag.name,
+      skills: @tag.skills.map(&:id) }
   end
 end

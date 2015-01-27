@@ -10,6 +10,7 @@ describe Api::V1::TagsController do
 
       json_response = JsonResponse.new(response)
       expect(json_response.headers).to have_http_status(:ok)
+      expect(json_response.first_tag_name).to eq(tag1.name)
       expect(json_response.last_tag_name).to eq(tag2.name)
     end
   end
