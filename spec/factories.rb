@@ -1,6 +1,7 @@
 FactoryGirl.define do
   sequence(:skill_name) { |n| "skill_#{n}" }
   sequence(:section_name) { |n| "section_#{n}" }
+  sequence(:tag_name) { |n| "tag_#{n}" }
   sequence(:user_name) { |n| "user_#{n}" }
 
   factory :skill do
@@ -11,6 +12,10 @@ FactoryGirl.define do
 
   factory :section do
     name { generate(:section_name) }
+  end
+
+  factory :tag do
+    name { generate(:tag_name) }
   end
 
   factory :user do
