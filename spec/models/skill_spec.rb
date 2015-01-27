@@ -19,17 +19,20 @@ describe Skill do
     end
 
     it "must belong to a section" do
-      expect { create(:skill, section: nil) }.to raise_error(ActiveRecord::RecordInvalid)
+      skill = build(:skill, section: nil)
+      expect(skill).to_not be_valid
     end
   end
 
   describe "validations" do
     it "must have a name" do
-      expect { create(:skill, name: "") }.to raise_error(ActiveRecord::RecordInvalid)
+      skill = build(:skill, name: "")
+      expect(skill).to_not be_valid
     end
 
     it "featured value must be either boolean true or false" do
-      expect { create(:skill, featured: nil) }.to raise_error(ActiveRecord::RecordInvalid)
+      skill = build(:skill, featured: nil)
+      expect(skill).to_not be_valid
     end
   end
 end

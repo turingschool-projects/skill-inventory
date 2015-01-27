@@ -27,7 +27,7 @@ describe Api::V1::SkillsController do
     it "creates a skill (with full parameters)" do
       section = create(:section)
       skill_attributes = attributes_for(:skill)
-      skill_attributes[:section] = section.name
+      skill_attributes[:section] = section.id
 
       post :create, format: :json, skill: skill_attributes
 
@@ -71,7 +71,7 @@ describe Api::V1::SkillsController do
                    skill: {
                             name: "after_updated_name",
                             featured: true,
-                            section: section_2.name
+                            section: section_2.id
                           }
 
       json_response = JsonResponse.new(response)
@@ -88,7 +88,8 @@ describe Api::V1::SkillsController do
 
       json_response = JsonResponse.new(response)
       expect(json_response.headers).to have_http_status(:unprocessable_entity)
-      expect(json_response.skill_error_message).to eq(["Name can't be blank"])
+      expect(json_response.skill_error_message).to eq(["Name can't be blank",
+                                                "Section can't be blank"])
     end
   end
 

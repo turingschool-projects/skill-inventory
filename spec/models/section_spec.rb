@@ -2,8 +2,8 @@ describe Section do
 
   describe "validations" do
     it "must have a name" do
-      expect { create(:section, name: nil) }.to raise_error ActiveRecord::RecordInvalid
+      section = build(:section, name: nil)
+      expect(section).to_not be_valid
     end
-
   end
 end

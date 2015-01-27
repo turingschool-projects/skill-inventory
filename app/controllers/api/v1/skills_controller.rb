@@ -7,7 +7,7 @@ class Api::V1::SkillsController < Api::V1::BaseController
 
   def create
     skill = Skill.new(skill_params)
-    skill.section = Section.where(name: params[:skill][:section]).first
+    skill.section = Section.where(id: params[:skill][:section]).first
 
     if skill.save
       render status: 201, json: skill, root: "skill"
@@ -24,8 +24,7 @@ class Api::V1::SkillsController < Api::V1::BaseController
 
   def update
     skill = Skill.find(params[:id])
-    skill.section =
-      Section.where(name: params[:skill][:section]).first if params[:skill][:section]
+    skill.section = Section.where(id: params[:skill][:section]).first
 
     if skill.update_attributes(skill_params)
       render status: 200, json: skill, root: "skill"
