@@ -17,4 +17,10 @@ FactoryGirl.define do
     name { generate(:user_name) }
     role "student"
   end
+
+  factory :rating do
+    association :user, factory: :user
+    association :skill, factory: :skill
+    score 1
+  end
 end

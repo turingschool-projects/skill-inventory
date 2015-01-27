@@ -14,6 +14,10 @@ class JsonResponse
     response_body["skill"]
   end
 
+  def json_rating
+    response_body["rating"]
+  end
+
   def last_skill_name
     json_skill.last["name"]
   end
@@ -44,5 +48,9 @@ class JsonResponse
 
   def section_name
     json_section["name"]
+  end
+  
+  def last_rating_id
+    json_rating.last["id"]
   end
 end
