@@ -12,6 +12,7 @@ class Api::V1::RatingsController < Api::V1::BaseController
 
   def create
     rating = Rating.new(user_id: params[:user], skill_id: params[:skill], score: params[:score])
+
     if rating.save
       render status: 201, json: { rating: rating }
     else
