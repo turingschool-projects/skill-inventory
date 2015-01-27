@@ -50,7 +50,19 @@ class JsonResponse
     json_section["name"]
   end
 
+  def json_tag
+    response_body["tag"]
+  end
+
   def tag_name
-    response_body["tag"].last["name"]
+    json_tag["name"]
+  end
+
+  def last_tag_name
+    json_tag.last["name"]
+  end
+
+  def tag_skills
+    json_tag["skills"]
   end
 end

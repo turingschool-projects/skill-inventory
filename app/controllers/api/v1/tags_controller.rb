@@ -7,10 +7,10 @@ class Api::V1::TagsController < Api::V1::BaseController
 
   def create
     tag = Tag.new(tag_params)
-    tag.skill = Tag.where(name: params[:skill]).first
+    tag.skills << Skill.where(id: params[:tag][:skills])
 
     if tag.save
-      render status: 201, json: { tag: tag }
+      render status: 201, json: { tag: {id: tag.id, name: tag.name, skills: tag.skills.map(&:id)} }
     else
       render status: 422,
       json: { tag: { errors: tag.errors.full_messages } }
@@ -24,7 +24,7 @@ class Api::V1::TagsController < Api::V1::BaseController
 
   def update
     tag = Tag.find(params[:id])
-    tag.skill =
+    tag.skills =
     Skill.where(name: params[:skill]).first if params[:skill]
 
     if tag.update_attributes(tag_params)
