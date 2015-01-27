@@ -34,7 +34,7 @@ class JsonResponse
     json_skill["errors"]
   end
 
-  def section_number
-    response_body["section"].last["number"]
+  def section_name
+    response_body["section"].last["name"]
   end
 end
