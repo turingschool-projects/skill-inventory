@@ -27,7 +27,7 @@ describe Api::V1::SkillsController do
     it "creates a skill (with full parameters)" do
       section = create(:section)
       skill_attributes = attributes_for(:skill)
-      skill_attributes[:section] = section.number
+      skill_attributes[:section] = section.name
 
       post :create, format: :json, skill: skill_attributes
 
@@ -62,8 +62,8 @@ describe Api::V1::SkillsController do
 
   describe "update" do
     it "updates a skill" do
-      section_1 = create(:section, number: 1)
-      section_2 = create(:section, number: 2)
+      section_1 = create(:section, name: "1")
+      section_2 = create(:section, name: "2")
       skill = create(:skill, name: "before_updated_name", section: section_1)
 
       put :update, format: :json,
@@ -71,7 +71,7 @@ describe Api::V1::SkillsController do
                    skill: {
                             name: "after_updated_name",
                             featured: true,
-                            section: section_2.number
+                            section: section_2.name
                           }
 
       json_response = JsonResponse.new(response)
