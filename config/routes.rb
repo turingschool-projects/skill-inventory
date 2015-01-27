@@ -3,7 +3,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :skills, except: [:new, :edit], defaults: { format: :json }
       resources :ratings, except: [:new, :edit], defaults: { format: :json }
-      resources :sections, only: [:index], defaults: { format: :json }
+      resources :sections, only: [:index, :show], defaults: { format: :json }
       resources :sessions, only: [:create]
     end
   end
