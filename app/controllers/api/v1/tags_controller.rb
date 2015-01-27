@@ -28,7 +28,7 @@ class Api::V1::TagsController < Api::V1::BaseController
     Skill.where(name: params[:skill]).first if params[:skill]
 
     if tag.update_attributes(tag_params)
-      render status: 200, json: { tag: tag }
+      render status: 200, json: { tag: {id: tag.id, name: tag.name, skills: tag.skills.map(&:id)} }
     else
       render status: 422,
       json: { tag: { errors: tag.errors.full_messages } }

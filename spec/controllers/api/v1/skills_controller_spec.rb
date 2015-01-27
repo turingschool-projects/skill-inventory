@@ -43,7 +43,7 @@ describe Api::V1::SkillsController do
 
       json_response = JsonResponse.new(response)
       expect(json_response.headers).to have_http_status(:unprocessable_entity)
-      expect(json_response.error_message).to eq(["Name can't be blank",
+      expect(json_response.skill_error_message).to eq(["Name can't be blank",
                                                  "Section can't be blank"])
     end
   end
@@ -88,7 +88,7 @@ describe Api::V1::SkillsController do
 
       json_response = JsonResponse.new(response)
       expect(json_response.headers).to have_http_status(:unprocessable_entity)
-      expect(json_response.error_message).to eq(["Name can't be blank"])
+      expect(json_response.skill_error_message).to eq(["Name can't be blank"])
     end
   end
 

@@ -38,7 +38,69 @@ describe Api::V1::TagsController do
       json_response = JsonResponse.new(response)
       expect(json_response.headers).to have_http_status(:created)
       expect(json_response.tag_name).to eq(tag_attributes[:name])
-      expect(json_response.json_tag["skills"]).to eq([skill1.id, skill2.id])
+      expect(json_response.tag_skill_ids).to eq([skill1.id, skill2.id])
+    end
+
+    it "responds with error messages if a tag fails to create" do
+      post :create, format: :json, tag: { name: "" }
+
+      json_response = JsonResponse.new(response)
+      expect(json_response.headers).to have_http_status(:unprocessable_entity)
+      expect(json_response.tag_error_message).to eq(["Name can't be blank"])
+    end
+  end
+
+  describe "show" do
+    it "returns an individual tag" do
+      tag = create(:tag, name: "show_tag")
+
+      get :show, format: :json, id: tag.id
+
+      json_response = JsonResponse.new(response)
+      expect(json_response.headers).to have_http_status(:ok)
+      expect(json_response.tag_name).to eq("show_tag")
+    end
+  end
+
+  describe "update" do
+    it "updates a tag" do
+      skill_1 = create(:skill, name: "skill1")
+      skill_2 = create(:skill, name: "skill2")
+      tag = create(:tag, name: "before_updated_name", skills: [skill_1, skill_2])
+
+      put :update, format: :json,
+      id: tag.id,
+      tag: {
+        name: "after_updated_name",
+        skill: skill_2.name
+      }
+
+      json_response = JsonResponse.new(response)
+      expect(json_response.headers).to have_http_status(:ok)
+      expect(json_response.tag_name).to eq("after_updated_name")
+      expect(json_response.tag_skill_ids).to eq([skill_1.id, skill_2.id])
+    end
+
+    it "responds with error messages if a tag fails to update" do
+      tag = create(:tag)
+
+      put :update, format: :json, id: tag.id, tag: { name: "" }
+
+      json_response = JsonResponse.new(response)
+      expect(json_response.headers).to have_http_status(:unprocessable_entity)
+      expect(json_response.tag_error_message).to eq(["Name can't be blank"])
+    end
+  end
+
+  describe "destroy" do
+    it "destroys a tag" do
+      tag = create(:tag)
+
+      delete :destroy, format: :json, id: tag.id
+
+      json_response = JsonResponse.new(response)
+      expect(json_response.headers).to have_http_status(:ok)
+      expect(json_response.tag_name).to eq(tag.name)
     end
   end
 end
