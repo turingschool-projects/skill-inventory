@@ -1,5 +1,5 @@
 class SkillSerializer < ActiveModel::Serializer
-  attributes :name, :featured, :section
+  attributes :id, :name, :featured, :section
 
   def section
     object.section.id
