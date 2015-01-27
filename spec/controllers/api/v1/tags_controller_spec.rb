@@ -51,18 +51,6 @@ describe Api::V1::TagsController do
     end
   end
 
-  describe "show" do
-    it "returns an individual tag" do
-      tag = create(:tag, name: "show_tag")
-
-      get :show, format: :json, id: tag.id
-
-      json_response = JsonResponse.new(response)
-      expect(json_response.headers).to have_http_status(:ok)
-      expect(json_response.tag_name).to eq("show_tag")
-    end
-  end
-
   describe "update" do
     it "updates a tag" do
       skill_1 = create(:skill, name: "skill1")

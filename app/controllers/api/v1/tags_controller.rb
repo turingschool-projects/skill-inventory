@@ -6,14 +6,14 @@ class Api::V1::TagsController < Api::V1::BaseController
   end
 
   def create
-    @tag = Tag.new(tag_params)
-    @tag.skills << Skill.where(id: params[:tag][:skills])
+    tag = Tag.new(tag_params)
+    tag.skills << Skill.where(id: params[:tag][:skills])
 
-    if @tag.save
-      render status: 201, json: { tag: index_of_tags }
+    if tag.save
+      render status: 201, json: tag, root: "tag"
     else
       render status: 422,
-      json: { tag: { errors: @tag.errors.full_messages } }
+      json: { tag: { errors: tag.errors.full_messages } }
     end
   end
 
@@ -23,15 +23,15 @@ class Api::V1::TagsController < Api::V1::BaseController
   end
 
   def update
-    @tag = Tag.find(params[:id])
-    @tag.skills =
+    tag = Tag.find(params[:id])
+    tag.skills =
     Skill.where(name: params[:skill]).first if params[:skill]
 
-    if @tag.update_attributes(tag_params)
-      render status: 200, json: { tag: index_of_tags }
+    if tag.update_attributes(tag_params)
+      render status: 200, json: tag, root: "tag"
     else
       render status: 422,
-      json: { tag: { errors: @tag.errors.full_messages } }
+      json: { tag: { errors: tag.errors.full_messages } }
     end
   end
 
@@ -48,9 +48,4 @@ class Api::V1::TagsController < Api::V1::BaseController
     params.require(:tag).permit(:name)
   end
 
-  def index_of_tags
-    { id: @tag.id,
-      name: @tag.name,
-      skills: @tag.skills.map(&:id) }
-  end
 end
