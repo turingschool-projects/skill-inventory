@@ -16,6 +16,7 @@ class Api::V1::RatingsController < Api::V1::BaseController
       render status: 201, json: { rating: rating }
     else
       render status 422, json: { rating: { errors: rating.errors.full_messages } }
+    end
   end
 
   def update
@@ -24,6 +25,7 @@ class Api::V1::RatingsController < Api::V1::BaseController
       render status: 200, json: { rating: rating }
     else
       render status 422, json: { rating: { errors: rating.errors.full_messages } }
+    end
   end
 
   def destroy
