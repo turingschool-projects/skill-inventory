@@ -2,7 +2,7 @@ class Api::V1::SkillsController < Api::V1::BaseController
   respond_to :json
 
   def index
-    render json: { skill: index_of_skills }
+    render json: index_of_skills, root: "skill"
   end
 
   def create
@@ -10,7 +10,7 @@ class Api::V1::SkillsController < Api::V1::BaseController
     skill.section = Section.where(name: params[:skill][:section]).first
 
     if skill.save
-      render status: 201, json: { skill: skill }
+      render status: 201, json: skill, root: "skill"
     else
       render status: 422,
              json: { skill: { errors: skill.errors.full_messages } }
@@ -19,7 +19,7 @@ class Api::V1::SkillsController < Api::V1::BaseController
 
   def show
     skill = Skill.find(params[:id])
-    render json: { skill: skill }
+    render json: skill, root: "skill"
   end
 
   def update
@@ -28,7 +28,7 @@ class Api::V1::SkillsController < Api::V1::BaseController
       Section.where(name: params[:skill][:section]).first if params[:skill][:section]
 
     if skill.update_attributes(skill_params)
-      render status: 200, json: { skill: skill }
+      render status: 200, json: skill, root: "skill"
     else
       render status: 422,
              json: { skill: { errors: skill.errors.full_messages } }
@@ -39,7 +39,7 @@ class Api::V1::SkillsController < Api::V1::BaseController
     skill = Skill.find(params[:id])
     skill.destroy
 
-    render status: 200, json: { skill: skill }
+    render status: 200, json: skill, root: "skill"
   end
 
   private

@@ -14,6 +14,7 @@ gem 'responders', '~> 2.0'
 gem 'rails_12factor', group: :production
 gem 'octokit'
 gem 'factory_girl_rails'
+gem 'active_model_serializers'
 
 group :development, :test do
   gem 'byebug'

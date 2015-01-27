@@ -26,8 +26,8 @@ class JsonResponse
     json_skill["featured"]
   end
 
-  def skill_section_id
-    json_skill["section_id"]
+  def skill_section
+    json_skill["section"]
   end
 
   def skill_tag_id
@@ -38,8 +38,16 @@ class JsonResponse
     json_skill["errors"]
   end
 
+  def json_section
+    response_body["section"]
+  end
+
+  def last_section_name
+    json_section.last["name"]
+  end
+
   def section_name
-    response_body["section"].last["name"]
+    json_section["name"]
   end
 
   def tag_name
