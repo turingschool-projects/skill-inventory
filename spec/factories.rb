@@ -19,8 +19,8 @@ FactoryGirl.define do
   end
 
   factory :rating do
-    association :user, factory: :user
-    association :skill, factory: :skill
+    user
+    skill
     score 1
   end
 end
