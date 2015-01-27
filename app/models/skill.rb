@@ -1,4 +1,7 @@
 class Skill < ActiveRecord::Base
+  has_many :ratings
+  has_many :users, through: :ratings
+
   belongs_to :section, foreign_key: :section_id
 
   validates :name, presence: true
