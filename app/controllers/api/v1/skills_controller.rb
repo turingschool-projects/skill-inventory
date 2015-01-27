@@ -19,7 +19,7 @@ class Api::V1::SkillsController < Api::V1::BaseController
 
   def show
     skill = Skill.find(params[:id])
-    render json: skill, root: "skill" 
+    render json: skill, root: "skill"
   end
 
   def update

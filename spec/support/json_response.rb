@@ -38,7 +38,11 @@ class JsonResponse
     response_body["section"]
   end
 
-  def section_name
+  def last_section_name
     json_section.last["name"]
+  end
+
+  def section_name
+    json_section["name"]
   end
 end

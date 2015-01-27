@@ -1,3 +1,3 @@
 class SectionSerializer < ActiveModel::Serializer
-  attributes :number
+  attributes :name
 end
