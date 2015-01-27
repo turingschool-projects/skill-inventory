@@ -18,6 +18,10 @@ class JsonResponse
     response_body["rating"]
   end
 
+  def json_section
+    response_body["section"]
+  end
+
   def last_skill_name
     json_skill.last["name"]
   end
@@ -36,10 +40,6 @@ class JsonResponse
 
   def error_message
     json_skill["errors"]
-  end
-
-  def json_section
-    response_body["section"]
   end
 
   def last_section_name
