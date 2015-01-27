@@ -2,7 +2,7 @@ class Api::V1::SectionsController < Api::V1::BaseController
   respond_to :json
 
   def index
-    render json: { section: Section.all }
+    render json: Section.all, root: "section" 
   end
 
   def show
