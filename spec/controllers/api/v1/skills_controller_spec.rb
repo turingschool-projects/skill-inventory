@@ -35,7 +35,7 @@ describe Api::V1::SkillsController do
       expect(json_response.headers).to have_http_status(:created)
       expect(json_response.skill_name).to eq(skill_attributes[:name])
       expect(json_response.skill_featured).to eq(skill_attributes[:featured])
-      expect(json_response.skill_section_id).to eq(section.id)
+      expect(json_response.skill_section).to eq(section.id)
     end
 
     it "responds with error messages if a skill fails to create" do
@@ -78,7 +78,7 @@ describe Api::V1::SkillsController do
       expect(json_response.headers).to have_http_status(:ok)
       expect(json_response.skill_name).to eq("after_updated_name")
       expect(json_response.skill_featured).to eq(true)
-      expect(json_response.skill_section_id).to eq(section_2.id)
+      expect(json_response.skill_section).to eq(section_2.id)
     end
 
     it "responds with error messages if a skill fails to update" do
