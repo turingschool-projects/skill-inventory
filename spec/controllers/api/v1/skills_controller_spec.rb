@@ -43,7 +43,7 @@ describe Api::V1::SkillsController do
 
       expect(response.status).to eq 422
       expect(json_response_error_message).to eq(["Name can't be blank",
-                                                 "Group can't be blank"])
+                                                 "Section can't be blank"])
     end
   end
 
