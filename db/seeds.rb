@@ -1,11 +1,11 @@
 require "factory_girl_rails"
 
-FactoryGirl.create(:section, name: "1")
-FactoryGirl.create(:section, name: "2")
-FactoryGirl.create(:section, name: "3")
-FactoryGirl.create(:section, name: "4")
+FactoryGirl.create(:section, name: "Module 1")
+FactoryGirl.create(:section, name: "Module 2")
+FactoryGirl.create(:section, name: "Module 3")
+FactoryGirl.create(:section, name: "Module 4")
 
-puts " Successfully added groups from seed data. ".center(70, "~*~")
+puts " Successfully added sections from seed data. ".center(70, "~*~")
 
 FactoryGirl.create(:skill, name: "skill2", featured: true)
 FactoryGirl.create(:skill, name: "skill2", featured: true)
