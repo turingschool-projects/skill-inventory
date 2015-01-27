@@ -30,11 +30,19 @@ class JsonResponse
     json_skill["section_id"]
   end
 
+  def skill_tag_id
+    json_skill["tag_id"]
+  end
+
   def error_message
     json_skill["errors"]
   end
 
   def section_name
     response_body["section"].last["name"]
+  end
+
+  def tag_name
+    response_body["tag"].last["name"]
   end
 end
