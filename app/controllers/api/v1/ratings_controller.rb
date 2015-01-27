@@ -2,19 +2,19 @@ class Api::V1::RatingsController < Api::V1::BaseController
   respond_to :json
 
   def index
-    render json: { rating: Rating.all }
+    render json: Rating.all, root: "rating"
   end
 
   def show
     rating = Rating.find(params[:id])
-    render json: { rating: rating }
+    render json: rating, root: "rating"
   end
 
   def create
     rating = Rating.new(user_id: params[:user], skill_id: params[:skill], score: params[:score])
 
     if rating.save
-      render status: 201, json: { rating: rating }
+      render status: 201, json: rating, root: "rating"
     else
       render status 422, json: { rating: { errors: rating.errors.full_messages } }
     end

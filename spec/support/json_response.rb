@@ -53,4 +53,8 @@ class JsonResponse
   def last_rating_id
     json_rating.last["id"]
   end
+  
+  def rating_id
+    json_rating["id"]
+  end
 end
