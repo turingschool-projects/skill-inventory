@@ -42,7 +42,8 @@ describe Api::V1::SkillsController do
       post :create, format: :json, skill: { name: "" }
 
       expect(response.status).to eq 422
-      expect(json_response_error_message).to eq(["Name can't be blank"])
+      expect(json_response_error_message).to eq(["Name can't be blank",
+                                                 "Group can't be blank"])
     end
   end
 
