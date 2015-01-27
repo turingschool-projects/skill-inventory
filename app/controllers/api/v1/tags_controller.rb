@@ -2,7 +2,7 @@ class Api::V1::TagsController < Api::V1::BaseController
   respond_to :json
 
   def index
-    render json: { tag: Tag.all }
+    render json: Tag.all, root: "tag"
   end
 
   def create
@@ -19,7 +19,7 @@ class Api::V1::TagsController < Api::V1::BaseController
 
   def show
     tag = Tag.find(params[:id])
-    render json: { tag: tag }
+    render json: tag, root: "tag"
   end
 
   def update
@@ -39,7 +39,7 @@ class Api::V1::TagsController < Api::V1::BaseController
     tag = Tag.find(params[:id])
     tag.destroy
 
-    render status: 200, json: { tag: tag }
+    render status: 200, json: tag, root: "tag"
   end
 
   private
