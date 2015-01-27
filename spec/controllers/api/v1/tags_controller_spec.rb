@@ -67,14 +67,14 @@ describe Api::V1::TagsController do
     it "updates a tag" do
       skill_1 = create(:skill, name: "skill1")
       skill_2 = create(:skill, name: "skill2")
-      tag = create(:tag, name: "before_updated_name", skills: [skill_1, skill_2])
+      tag = create(:tag, name: "before_updated_name",
+                         skills: [skill_1, skill_2])
 
       put :update, format: :json,
       id: tag.id,
-      tag: {
-        name: "after_updated_name",
-        skill: skill_2.name
-      }
+      tag: { name: "after_updated_name",
+             skill: skill_2.name
+           }
 
       json_response = JsonResponse.new(response)
       expect(json_response.headers).to have_http_status(:ok)
