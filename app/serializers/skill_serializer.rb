@@ -5,7 +5,4 @@ class SkillSerializer < ActiveModel::Serializer
     object.section.id
   end
 
-  def tag
-    object.tag.map(&:id)
-  end
 end
