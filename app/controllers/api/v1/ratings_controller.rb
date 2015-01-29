@@ -17,7 +17,7 @@ class Api::V1::RatingsController < Api::V1::BaseController
       return revise(skill)
     end
     rating = Rating.new(rating_params)
-    rating.user = User.where(id: session[:user]["id"]).first
+    rating.user = User.where(id: session[:user_id]).first
     rating.skill = Skill.where(id: params["rating"]["skill"]).first
 
     if rating.save
