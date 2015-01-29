@@ -82,7 +82,7 @@ Rails.application.configure do
   config.middleware.use Rack::Cors do
     allow do
       origins 'http://skillinventory.divshot.io'
-      resource '*', headers: :any, methods: [:get, :post, :put, :delete]
+      resource '*', headers: :any, methods: [:get, :post, :put, :delete, :options]
     end
   end
 end
