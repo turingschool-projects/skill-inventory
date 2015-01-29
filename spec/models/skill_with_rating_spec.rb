@@ -1,5 +1,4 @@
 describe SkillWithRating do
-
   it "decorates a skill with a rating" do
     rating = create(:rating)
     user = rating.user
@@ -18,5 +17,4 @@ describe SkillWithRating do
     expect(skill_attributes.keys).to include("rating")
     expect(skill_with_rating.attributes["rating"]).to eq(rating.id)
   end
-
 end
