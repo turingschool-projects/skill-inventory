@@ -6,6 +6,11 @@ Rails.application.routes.draw do
       resources :ratings, except: [:new, :edit], defaults: { format: :json }
       resources :sections, only: [:index, :show], defaults: { format: :json }
       resources :sessions, only: [:create], defaults: { format: :json }
+
+      namespace :instructor do
+        resources :skills, only: [:index, :show]
+        resources :ratings, only: [:index, :show]
+      end
     end
   end
 
