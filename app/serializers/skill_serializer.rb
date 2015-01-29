@@ -8,4 +8,5 @@ class SkillSerializer < ActiveModel::Serializer
   def tags
     object.tags.map(&:id)
   end
+
 end

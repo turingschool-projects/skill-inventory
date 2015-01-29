@@ -4,7 +4,7 @@ class Api::V1::SessionsController < Api::V1::BaseController
     user_factory = UserFactory.new(github_authenticator)
     user = user_factory.find_or_create_user
 
-    session[:user] = user
+    session[:user_id] = user.id
 
     render status: :created, json: user
   end
