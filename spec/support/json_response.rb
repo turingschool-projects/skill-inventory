@@ -38,8 +38,8 @@ class JsonResponse
     json_skill["section"]
   end
 
-  def skill_tag_id
-    json_skill["tag_id"]
+  def skill_tag_ids
+    json_skill["tags"]
   end
 
   def skill_error_message

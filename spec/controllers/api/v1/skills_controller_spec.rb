@@ -26,8 +26,11 @@ describe Api::V1::SkillsController do
   describe "create" do
     it "creates a skill (with full parameters)" do
       section = create(:section)
+      tag1 = create(:tag)
+      tag2 = create(:tag)
       skill_attributes = attributes_for(:skill)
       skill_attributes[:section] = section.id
+      skill_attributes[:tags] = [tag1.id, tag2.id]
 
       post :create, format: :json, skill: skill_attributes
 
@@ -36,6 +39,7 @@ describe Api::V1::SkillsController do
       expect(json_response.skill_name).to eq(skill_attributes[:name])
       expect(json_response.skill_featured).to eq(skill_attributes[:featured])
       expect(json_response.skill_section).to eq(section.id)
+      expect(json_response.skill_tag_ids).to eq([tag1.id, tag2.id])
     end
 
     it "responds with error messages if a skill fails to create" do
