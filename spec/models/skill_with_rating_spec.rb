@@ -20,4 +20,3 @@ describe SkillWithRating do
   end
 
 end
-
