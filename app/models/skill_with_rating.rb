@@ -1,5 +1,4 @@
 class SkillWithRating
-
   attr_reader :skill, :rating
 
   def initialize(skill, user)
@@ -16,5 +15,4 @@ class SkillWithRating
   def to_json
     attributes.to_json
   end
-
 end
