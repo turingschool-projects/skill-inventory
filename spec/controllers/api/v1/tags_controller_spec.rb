@@ -39,7 +39,7 @@ describe Api::V1::TagsController do
       json_response = JsonResponse.new(response)
       expect(json_response.headers).to have_http_status(:created)
       expect(json_response.tag_name).to eq(tag_attributes[:name])
-      expect(json_response.tag_skill_ids).to eq([skill1.id, skill2.id])
+      expect(json_response.tag_skills).to eq([skill1.id, skill2.id])
     end
 
     it "responds with error messages if a tag fails to create" do
@@ -68,7 +68,7 @@ describe Api::V1::TagsController do
       json_response = JsonResponse.new(response)
       expect(json_response.headers).to have_http_status(:ok)
       expect(json_response.tag_name).to eq("after_updated_name")
-      expect(json_response.tag_skill_ids).to eq([skill_1.id, skill_2.id])
+      expect(json_response.tag_skills).to eq([skill_1.id, skill_2.id])
     end
 
     it "responds with error messages if a tag fails to update" do

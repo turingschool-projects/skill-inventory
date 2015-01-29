@@ -39,7 +39,7 @@ describe Api::V1::SkillsController do
       expect(json_response.skill_name).to eq(skill_attributes[:name])
       expect(json_response.skill_featured).to eq(skill_attributes[:featured])
       expect(json_response.skill_section).to eq(section.id)
-      expect(json_response.skill_tag_ids).to eq([tag1.id, tag2.id])
+      expect(json_response.skill_tags).to eq([tag1.id, tag2.id])
     end
 
     it "responds with error messages if a skill fails to create" do
@@ -68,14 +68,20 @@ describe Api::V1::SkillsController do
     it "updates a skill" do
       section_1 = create(:section, name: "1")
       section_2 = create(:section, name: "2")
-      skill = create(:skill, name: "before_updated_name", section: section_1)
+      tag_1 = create(:tag, name: "tag1")
+      tag_2 = create(:tag, name: "tag2")
+      skill = create(:skill,
+                      name: "before_updated_name",
+                      section: section_1,
+                      tags: [tag_1, tag_2])
 
       put :update, format: :json,
                    id: skill.id,
                    skill: {
                             name: "after_updated_name",
                             featured: true,
-                            section: section_2.id
+                            section: section_2.id,
+                            tags: tag_1.name
                           }
 
       json_response = JsonResponse.new(response)
@@ -83,6 +89,7 @@ describe Api::V1::SkillsController do
       expect(json_response.skill_name).to eq("after_updated_name")
       expect(json_response.skill_featured).to eq(true)
       expect(json_response.skill_section).to eq(section_2.id)
+      expect(json_response.skill_tags).to eq([tag_1.id, tag_2.id])
     end
 
     it "responds with error messages if a skill fails to update" do
