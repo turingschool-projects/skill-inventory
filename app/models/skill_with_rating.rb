@@ -16,4 +16,3 @@ class SkillWithRating
     attributes.to_json
   end
 end
-
