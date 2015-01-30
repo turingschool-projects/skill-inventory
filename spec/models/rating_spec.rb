@@ -6,7 +6,7 @@ describe Rating do
   end
 
   it "is invalid without a user" do
-    rating = build(:rating, user:nil)
+    rating = build(:rating, user: nil)
 
     expect(rating).to be_invalid
   end
@@ -33,4 +33,3 @@ describe Rating do
     expect(rating_2).to be_invalid
   end
 end
-
