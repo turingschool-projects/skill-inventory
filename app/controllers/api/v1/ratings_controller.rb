@@ -18,7 +18,9 @@ class Api::V1::RatingsController < Api::V1::BaseController
     if rating.save
       render status: 201, json: rating, root: "rating"
     else
-      render status: 422, json: { rating: { errors: rating.errors.full_messages } }
+      render status: 422, json: {
+        rating: { errors: rating.errors.full_messages }
+      }
     end
   end
 
@@ -27,7 +29,9 @@ class Api::V1::RatingsController < Api::V1::BaseController
     if rating.update_attributes(rating_params)
       render status: 200, json: { rating: rating }
     else
-      render status 422, json: { rating: { errors: rating.errors.full_messages } }
+      render status: 422, json: {
+        rating: { errors: rating.errors.full_messages }
+      }
     end
   end
 
