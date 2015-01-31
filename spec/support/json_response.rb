@@ -38,8 +38,8 @@ class JsonResponse
     json_skill["section"]
   end
 
-  def skill_tag_id
-    json_skill["tag_id"]
+  def skill_tags
+    json_skill["tags"]
   end
 
   def skill_error_message
@@ -70,7 +70,7 @@ class JsonResponse
     json_tag.last["name"]
   end
 
-  def tag_skill_ids
+  def tag_skills
     json_tag["skills"]
   end
 
