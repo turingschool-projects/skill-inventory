@@ -13,7 +13,7 @@ class Api::V1::RatingsController < Api::V1::BaseController
   def create
     rating = Rating.new(rating_params)
     rating.user = current_user
-    rating.skill = Skill.where(id: params["rating"]["skill"]).first
+    rating.skill = Skill.find(params["rating"]["skill"])
 
     if rating.save
       render status: 201, json: rating, root: "rating"
