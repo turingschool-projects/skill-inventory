@@ -24,8 +24,8 @@ FactoryGirl.define do
   end
 
   factory :rating do
+    score 1
     user
     skill
-    score 1
   end
 end
