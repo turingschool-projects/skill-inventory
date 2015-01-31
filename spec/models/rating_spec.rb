@@ -1,21 +1,18 @@
 describe Rating do
-
   it "is valid" do
-    user = create(:user)
-    skill = create(:skill)
-    rating = build(:rating, user: user, skill: skill, score: 1)
+    rating = build(:rating)
 
     expect(rating).to be_valid
   end
 
   it "is invalid without a user" do
-    rating = build(:rating, skill: create(:skill), score: 1)
+    rating = build(:rating, user: nil)
 
     expect(rating).to be_invalid
   end
 
   it "is invalid without a skill" do
-    rating = build(:rating, score: 1, user: create(:user))
+    rating = build(:rating, skill: nil)
 
     expect(rating).to be_invalid
   end
