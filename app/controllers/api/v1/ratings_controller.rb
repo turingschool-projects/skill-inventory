@@ -11,8 +11,7 @@ class Api::V1::RatingsController < Api::V1::BaseController
   end
 
   def create
-    rating = Rating.new(rating_params)
-    rating.user = current_user
+    rating = current_user.ratings.new(rating_params)
     rating.skill = Skill.find(params["rating"]["skill"])
 
     if rating.save
