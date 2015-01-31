@@ -18,7 +18,7 @@ describe Rating do
   end
 
   it "is invalid if score is not between 0 - 4" do
-    rating = build(:rating, score: 5, user: create(:user))
+    rating = build(:rating, score: 5)
 
     expect(rating).to be_invalid
   end
