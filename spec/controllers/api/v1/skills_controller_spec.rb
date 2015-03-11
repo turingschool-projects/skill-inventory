@@ -16,12 +16,6 @@ describe Api::V1::SkillsController do
     end
 
     it "can unfeature a skill" do
-      
-
-
-
-
-
 
     end
   end

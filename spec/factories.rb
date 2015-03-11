@@ -31,5 +31,4 @@ FactoryGirl.define do
     user
     skill
   end
-
 end
