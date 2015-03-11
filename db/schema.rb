@@ -11,10 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150311043322) do
+ActiveRecord::Schema.define(version: 20150311194527) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "cohorts", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "featured_cohort_skills", force: :cascade do |t|
+    t.integer  "cohort_id"
+    t.integer  "skill_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "ratings", force: :cascade do |t|
     t.integer  "user_id"
@@ -27,10 +40,6 @@ ActiveRecord::Schema.define(version: 20150311043322) do
   add_index "ratings", ["skill_id"], name: "index_ratings_on_skill_id", using: :btree
   add_index "ratings", ["user_id"], name: "index_ratings_on_user_id", using: :btree
 
-  create_table "sections", force: :cascade do |t|
-    t.string "name"
-  end
-
   create_table "skill_tags", force: :cascade do |t|
     t.integer "skill_id"
     t.integer "tag_id"
@@ -40,19 +49,15 @@ ActiveRecord::Schema.define(version: 20150311043322) do
   add_index "skill_tags", ["tag_id"], name: "index_skill_tags_on_tag_id", using: :btree
 
   create_table "skills", force: :cascade do |t|
-    t.string  "name",       default: "",    null: false
-    t.boolean "featured",   default: false
-    t.integer "section_id"
+    t.string "name", default: "", null: false
   end
-
-  add_index "skills", ["section_id"], name: "index_skills_on_section_id", using: :btree
 
   create_table "tags", force: :cascade do |t|
     t.string "name"
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "name",          default: ""
+    t.string   "name"
     t.string   "role",          default: "student"
     t.string   "token",                             null: false
     t.string   "uid",                               null: false
@@ -62,9 +67,9 @@ ActiveRecord::Schema.define(version: 20150311043322) do
     t.string   "provider",      default: "github"
     t.datetime "created_at",                        null: false
     t.datetime "updated_at",                        null: false
+    t.integer  "cohort_id"
   end
 
   add_foreign_key "skill_tags", "skills"
   add_foreign_key "skill_tags", "tags"
-  add_foreign_key "skills", "sections"
 end
