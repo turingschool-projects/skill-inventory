@@ -50,6 +50,18 @@ class Api::V1::SkillsController < Api::V1::BaseController
     end
   end
 
+  def unfeature
+    unfeatured_skill = FeaturedCohortSkill.find_by(cohort_id: featured_skill_params[:cohort_id],
+                                                   skill_id: featured_skill_params[:skill_id])
+
+    if unfeatured_skill.destroy
+      render status: 201, json: unfeatured_skill, root: "skill"
+    else
+      render status: 422,
+             json: { skill: { errors: unfeatured_skill.errors.full_messages } }
+    end
+  end
+
   private
 
   def skill_params

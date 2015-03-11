@@ -16,7 +16,18 @@ describe Api::V1::SkillsController do
     end
 
     it "can unfeature a skill" do
+      skill = create(:skill, name: "tdd")
+      cohort = create(:cohort, name: "1409")
 
+      post :feature, format: :json, featured_skill: { skill_id: skill.id,
+                                                      cohort_id: cohort.id
+                                                    }
+      expect(FeaturedCohortSkill.count).to eq(1)
+      
+      post :unfeature, format: :json, featured_skill: { skill_id: skill.id,
+                                                        cohort_id: cohort.id
+                                                      }
+      expect(FeaturedCohortSkill.count).to eq(0)
     end
   end
 
