@@ -7,6 +7,7 @@ Rails.application.routes.draw do
       resources :sessions, only: [:create], defaults: { format: :json }
       get "/skills/feature", to: "skills#feature", defaults: { format: :json }
       get "/skills/unfeature", to: "skills#unfeature", defaults: { format: :json }
+      resources :users, only: [:update], defaults: { format: :json }
 
       namespace :instructor do
         resources :skills, only: [:index, :show]
