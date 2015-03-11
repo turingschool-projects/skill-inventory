@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150127180023) do
+ActiveRecord::Schema.define(version: 20150311043322) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,9 +52,16 @@ ActiveRecord::Schema.define(version: 20150127180023) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "name"
-    t.string "role",  default: "student"
-    t.string "token"
+    t.string   "name",          default: ""
+    t.string   "role",          default: "student"
+    t.string   "token",                             null: false
+    t.string   "uid",                               null: false
+    t.string   "thumbnail_url",                     null: false
+    t.string   "username",      default: ""
+    t.string   "email",         default: ""
+    t.string   "provider",      default: "github"
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
   end
 
   add_foreign_key "skill_tags", "skills"
