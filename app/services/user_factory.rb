@@ -7,7 +7,6 @@ class UserFactory
   def find_or_create_user
     auth_id = authenticator.auth[:id]
     user = User.find_by(uid: auth_id) || User.create_with_github(auth)
-    Commit.create_with_github(user)
     user
   end
 
