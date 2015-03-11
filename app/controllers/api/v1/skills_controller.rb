@@ -2,7 +2,7 @@ class Api::V1::SkillsController < Api::V1::BaseController
   respond_to :json
 
   def index
-    render json: index_of_skills, root: "skill"
+    render json: Skill.all, root: "skill"
   end
 
   def create
@@ -23,7 +23,6 @@ class Api::V1::SkillsController < Api::V1::BaseController
 
   def update
     skill = Skill.find(params[:id])
-    skill.section = Section.where(id: params[:skill][:section]).first
 
     if skill.update_attributes(skill_params)
       render status: 200, json: skill, root: "skill"
@@ -41,11 +40,6 @@ class Api::V1::SkillsController < Api::V1::BaseController
   end
 
   private
-
-  def index_of_skills
-    featured = params[:featured]
-    featured ? Skill.featured : Skill.all
-  end
 
   def skill_params
     params.require(:skill).permit(:name)

@@ -11,7 +11,7 @@ class Api::V1::RatingsController < Api::V1::BaseController
   end
 
   def create
-    Rating.new(rating_params)
+    rating = Rating.new(rating_params)
 
     if rating.save
       render status: 201, json: rating, root: "rating"
