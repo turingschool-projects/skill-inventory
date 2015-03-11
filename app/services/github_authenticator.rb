@@ -8,8 +8,8 @@ class GithubAuthenticator
     @auth_code = auth_code
   end
 
-  def name
-    github_user[:name]
+  def auth
+    github_user
   end
 
   private
@@ -61,8 +61,8 @@ class GithubAuthenticator
 
   def post_data
     {
-      "client_id" => ENV["GITHUB_KEY"],
-      "client_secret" => ENV["GITHUB_SECRET"],
+      "client_id" => ENV["GITHUB_CLIENT_ID"],
+      "client_secret" => ENV["GITHUB_CLIENT_SECRET"],
       "code" => @auth_code
     }
   end
