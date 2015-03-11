@@ -6,9 +6,7 @@ describe Api::V1::UsersController do
 
       put :update, format: :json,
                    id: user.id,
-                   user: {
-                            cohort_id: cohort.id
-                          }
+                   user: { cohort_id: cohort.id }
       json_response = JSON.parse(response.body)
 
       expect(json_response["user"]["id"]).to eq(user.id)

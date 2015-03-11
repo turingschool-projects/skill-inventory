@@ -41,7 +41,6 @@ class Api::V1::SkillsController < Api::V1::BaseController
 
   def feature
     featured_skill = FeaturedCohortSkill.create(featured_skill_params)
-
     if featured_skill.save
       render status: 201, json: featured_skill, root: "skill"
     else
@@ -55,7 +54,6 @@ class Api::V1::SkillsController < Api::V1::BaseController
     skill_id  = featured_skill_params[:skill_id]
     unfeatured_skill = FeaturedCohortSkill.find_by(cohort_id: cohort_id,
                                                    skill_id: skill_id)
-
     if unfeatured_skill.destroy
       render status: 201, json: unfeatured_skill, root: "skill"
     else
