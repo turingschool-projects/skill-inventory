@@ -19,7 +19,7 @@ FactoryGirl.define do
     thumbnail_url "http://google.com"
     username "chasevh"
     email "chase@example.com"
-    # cohort
+    cohort
   end
 
   factory :rating do
@@ -28,7 +28,7 @@ FactoryGirl.define do
     skill
   end
 
-  # factory :cohort do
-  #   name "1409"
-  # end
+  factory :cohort do
+    name "1409"
+  end
 end

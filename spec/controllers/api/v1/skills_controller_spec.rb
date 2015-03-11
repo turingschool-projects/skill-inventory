@@ -1,5 +1,19 @@
 describe Api::V1::SkillsController do
 
+  describe "featured skills" do
+    it "can feature a skill" do
+      skill = create(:skill, name: "tdd")
+      cohort = create(:cohort, name: "1409")
+
+      post :feature, format: :json, featured_cohort_skill: { skill_id: skill.id, cohort_id: cohort.id }
+
+      json_response = JsonResponse.new(response)
+      expect(json_response.headers).to have_http_status(:ok)
+
+      expect(json_response.skill_name).to eq("tdd")
+    end
+  end
+
   describe "index" do
     it "returns a json array of skills" do
       create(:skill, name: "tdd")
