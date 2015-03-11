@@ -39,9 +39,24 @@ class Api::V1::SkillsController < Api::V1::BaseController
     render status: 200, json: skill, root: "skill"
   end
 
+  def feature
+    featured_skill = FeaturedCohortSkill.create(featured_skill_params)
+
+    if featured_skill.save
+      render status: 201, json: featured_skill, root: "skill"
+    else
+      render status: 422,
+             json: { skill: { errors: featured_skill.errors.full_messages } }
+    end
+  end
+
   private
 
   def skill_params
     params.require(:skill).permit(:name)
+  end
+
+  def featured_skill_params
+    params.require(:featured_skill).permit(:cohort_id, :skill_id)
   end
 end

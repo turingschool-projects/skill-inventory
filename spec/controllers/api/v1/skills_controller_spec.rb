@@ -5,12 +5,24 @@ describe Api::V1::SkillsController do
       skill = create(:skill, name: "tdd")
       cohort = create(:cohort, name: "1409")
 
-      post :feature, format: :json, featured_cohort_skill: { skill_id: skill.id, cohort_id: cohort.id }
+      post :feature, format: :json, featured_skill: { skill_id: skill.id,
+                                                      cohort_id: cohort.id
+                                                    }
 
-      json_response = JsonResponse.new(response)
-      expect(json_response.headers).to have_http_status(:ok)
+      json_response = JSON.parse(response.body)
 
-      expect(json_response.skill_name).to eq("tdd")
+      expect(json_response["skill"]["cohort_id"]).to eq(cohort.id)
+      expect(json_response["skill"]["skill_id"]).to eq(skill.id)
+    end
+
+    it "can unfeature a skill" do
+      
+
+
+
+
+
+
     end
   end
 

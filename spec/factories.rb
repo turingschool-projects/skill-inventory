@@ -11,6 +11,10 @@ FactoryGirl.define do
     name { generate(:tag_name) }
   end
 
+  factory :cohort do
+    name "1409"
+  end
+
   factory :user do
     name { generate(:user_name) }
     role "student"
@@ -28,7 +32,4 @@ FactoryGirl.define do
     skill
   end
 
-  factory :cohort do
-    name "1409"
-  end
 end
