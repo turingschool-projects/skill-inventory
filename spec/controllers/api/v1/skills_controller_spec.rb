@@ -23,7 +23,7 @@ describe Api::V1::SkillsController do
                                                       cohort_id: cohort.id
                                                     }
       expect(FeaturedCohortSkill.count).to eq(1)
-      
+
       post :unfeature, format: :json, featured_skill: { skill_id: skill.id,
                                                         cohort_id: cohort.id
                                                       }

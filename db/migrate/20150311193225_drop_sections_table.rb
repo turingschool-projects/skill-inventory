@@ -4,5 +4,4 @@ class DropSectionsTable < ActiveRecord::Migration
     remove_column :skills, :section_id
     remove_column :skills, :featured
   end
-
 end

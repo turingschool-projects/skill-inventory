@@ -1,5 +1,4 @@
 describe Api::V1::UsersController do
-
   describe "editing a user" do
     it "can add a cohort to a user" do
       user = create(:user, cohort_id: nil)
@@ -8,7 +7,7 @@ describe Api::V1::UsersController do
       put :update, format: :json,
                    id: user.id,
                    user: {
-                           cohort_id: cohort.id
+                            cohort_id: cohort.id
                           }
       json_response = JSON.parse(response.body)
 
@@ -17,4 +16,3 @@ describe Api::V1::UsersController do
     end
   end
 end
-
