@@ -22,7 +22,7 @@ second_student = User.create(
   cohort_id: cohort_2.id
 )
 
-first_instructor = User.create(
+User.create(
   name: "Steve",
   role: "instructor",
   token: "456",
