@@ -100,9 +100,3 @@ Rating.create(
   skill_id: active_record_skill.id,
   score: 4
 )
-
-puts "Created #{User.count} users"
-puts "Created #{Cohort.count} cohorts"
-puts "Created #{Skill.count} skills"
-puts "Created #{Tag.count} tags"
-puts "Created #{Rating.count} ratings"
