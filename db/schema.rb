@@ -11,13 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150311194527) do
+ActiveRecord::Schema.define(version: 20150312170012) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "cohorts", force: :cascade do |t|
-    t.string   "name"
+    t.string   "name",       null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -53,16 +53,16 @@ ActiveRecord::Schema.define(version: 20150311194527) do
   end
 
   create_table "tags", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "name"
+    t.string   "name",          default: ""
     t.string   "role",          default: "student"
     t.string   "token",                             null: false
     t.string   "uid",                               null: false
     t.string   "thumbnail_url",                     null: false
-    t.string   "username",      default: ""
+    t.string   "username",                          null: false
     t.string   "email",         default: ""
     t.string   "provider",      default: "github"
     t.datetime "created_at",                        null: false
