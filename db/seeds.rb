@@ -6,27 +6,27 @@ cohort_2 = Cohort.create(
   name: "1410"
 )
 
-first_student = User.create(
+first_student = User.create!(
   name: "Sam",
-  token: "456",
+  username: "skuhlmann",
   uid: "123",
   thumbnail_url: "https://avatars2.githubusercontent.com/u/6923345?v=3&s=460",
   cohort_id: cohort_1.id
 )
 
-second_student = User.create(
+second_student = User.create!(
   name: "Chandra",
-  token: "456",
-  uid: "123",
+  username: "chandracarney",
+  uid: "456",
   thumbnail_url: "https://avatars1.githubusercontent.com/u/8561841?v=3&s=400",
   cohort_id: cohort_2.id
 )
 
-User.create(
+User.create!(
   name: "Steve",
+  username: "stevekinney",
   role: "instructor",
-  token: "456",
-  uid: "123",
+  uid: "789",
   thumbnail_url: "https://avatars2.githubusercontent.com/u/251000?v=3&s=460",
 )
 
@@ -92,7 +92,7 @@ Rating.create(
 Rating.create(
   user_id: second_student.id,
   skill_id: java_script_skill.id,
-  score: 5
+  score: 4
 )
 
 Rating.create(
