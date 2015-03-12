@@ -11,8 +11,7 @@ class Api::V1::RatingsController < Api::V1::BaseController
   end
 
   def create
-    rating = current_user.ratings.new(rating_params)
-    rating.skill = Skill.find(params["rating"]["skill"])
+    rating = Rating.new(rating_params)
 
     if rating.save
       render status: 201, json: rating, root: "rating"
@@ -44,7 +43,7 @@ class Api::V1::RatingsController < Api::V1::BaseController
   private
 
   def rating_params
-    params.require(:rating).permit(:score)
+    params.require(:rating).permit(:score, :user_id, :skill_id)
   end
 
 end

@@ -27,11 +27,11 @@ describe Api::V1::RatingsController do
     it "creates a rating" do
       user = create(:user)
       skill = create(:skill)
-      stub_current_user user
 
       expect do
         post :create, format: :json, rating: {
-          "skill" => skill.id,
+          "skill_id" => skill.id,
+          "user_id" => user.id,
           "score" => 1
         }
       end.to change { Rating.count }.by(1)

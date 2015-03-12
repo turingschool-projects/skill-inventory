@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   has_many :ratings
   has_many :skills, through: :ratings
 
-  belongs_to :section
+  belongs_to :cohort
   validates :role, inclusion: { in: %w(student instructor),
                                 message: "%{value} is not a valid role" }
   validates :uid, :provider, :username, :thumbnail_url, presence: true

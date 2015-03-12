@@ -16,13 +16,13 @@ gem 'factory_girl_rails'
 gem 'active_model_serializers'
 
 group :development, :test do
+  gem 'dotenv-rails'
   gem 'byebug'
   gem 'web-console', '~> 2.0'
   gem 'spring'
   gem 'pry'
   gem 'better_errors'
   gem 'binding_of_caller'
-  gem 'dotenv-rails'
 end
 
 group :test do
