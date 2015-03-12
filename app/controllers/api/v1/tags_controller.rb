@@ -2,7 +2,7 @@ class Api::V1::TagsController < Api::V1::BaseController
   respond_to :json
 
   def index
-    render json: Tag.all, root: "tag"
+    render json: Tag.all
   end
 
   def create
@@ -10,7 +10,7 @@ class Api::V1::TagsController < Api::V1::BaseController
     tag.skills << Skill.where(id: params[:tag][:skills])
 
     if tag.save
-      render status: 201, json: tag, root: "tag"
+      render status: 201, json: tag
     else
       render status: 422,
       json: { tag: { errors: tag.errors.full_messages } }
@@ -19,7 +19,7 @@ class Api::V1::TagsController < Api::V1::BaseController
 
   def show
     tag = Tag.find(params[:id])
-    render json: tag, root: "tag"
+    render json: tag
   end
 
   def update
@@ -28,7 +28,7 @@ class Api::V1::TagsController < Api::V1::BaseController
     Skill.where(name: params[:skill]).first if params[:skill]
 
     if tag.update_attributes(tag_params)
-      render status: 200, json: tag, root: "tag"
+      render status: 200, json: tag
     else
       render status: 422,
       json: { tag: { errors: tag.errors.full_messages } }
@@ -39,7 +39,7 @@ class Api::V1::TagsController < Api::V1::BaseController
     tag = Tag.find(params[:id])
     tag.destroy
 
-    render status: 200, json: tag, root: "tag"
+    render status: 200, json: tag
   end
 
   private

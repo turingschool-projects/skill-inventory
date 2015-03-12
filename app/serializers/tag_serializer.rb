@@ -1,7 +1,7 @@
 class TagSerializer < ActiveModel::Serializer
-  attributes :id, :name, :skills
+  embed :ids
 
-  def skills
-    object.skills.map(&:id)
-  end
+  attributes :id, :name
+
+  has_many :skills
 end
