@@ -1,3 +1,8 @@
 class RatingSerializer < ActiveModel::Serializer
-  attributes :id, :score, :user_id, :skill_id
+  embed :ids
+
+  attributes :id, :score
+
+  has_one :skill
+  has_one :user
 end
