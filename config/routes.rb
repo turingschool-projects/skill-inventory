@@ -9,6 +9,7 @@ Rails.application.routes.draw do
       get "/skills/unfeature", to: "skills#unfeature", defaults: { format: :json }
       resources :users, defaults: { format: :json }
       resources :cohorts, defaults: { format: :json }
+      resources :dashboard, only: [:index], defaults: { format: :json }
 
       namespace :instructor do
         resources :skills, only: [:index, :show]

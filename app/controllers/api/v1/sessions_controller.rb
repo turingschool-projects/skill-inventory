@@ -3,6 +3,7 @@ class Api::V1::SessionsController < Api::V1::BaseController
 
   def create
     if user
+      session[:user_id] = user.id
       render json: user.as_json(only: [:id, :token, :email, :name, :username,
                                        :provider, :thumbnail_url, :uid]
                                ), status: :created
