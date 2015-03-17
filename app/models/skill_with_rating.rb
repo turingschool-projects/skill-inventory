@@ -10,7 +10,8 @@ class SkillWithRating
   def attributes
     skill.attributes.tap do |skill|
       skill["featured"] = featured_skills.include? skill if skills_present?
-      skill["rating"] = rating.score if rating
+      skill["rating"]   = rating.score if rating
+      # skill["skill_id"] = skill["id"]
     end
   end
 
@@ -23,6 +24,6 @@ class SkillWithRating
   end
 
   def to_json
-    attributes.to_json
+    attributes
   end
 end
