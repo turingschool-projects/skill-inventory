@@ -23,7 +23,7 @@ class SkillWithRating
     user.cohort.skills.map(&:attributes)
   end
 
-  def to_json
+  def as_json(options={})
     attributes
   end
 end
