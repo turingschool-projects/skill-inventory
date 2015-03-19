@@ -11,6 +11,10 @@ Rails.application.routes.draw do
       resources :cohorts, defaults: { format: :json }
       resources :skill_with_ratings, only: [:index], defaults: { format: :json }
 
+      resources :users, only: [] do
+        resources :skills_with_ratings, only: [:index], controller: 'skill_with_ratings'
+      end
+
       namespace :instructor do
         resources :skills, only: [:index, :show]
         resources :ratings, only: [:index, :show]
