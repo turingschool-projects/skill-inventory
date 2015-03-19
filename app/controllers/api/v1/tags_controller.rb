@@ -47,5 +47,4 @@ class Api::V1::TagsController < Api::V1::BaseController
   def tag_params
     params.require(:tag).permit(:name)
   end
-
 end

@@ -10,8 +10,8 @@ class SkillWithRating
   def attributes
     skill.attributes.tap do |skill|
       skill["featured"] = featured_skills.include? skill if skills_present?
-      skill["rating"]   = rating.score if rating
-      # skill["skill_id"] = skill["id"]
+      skill["rating"] = rating.score if rating
+      skill["skill_id"] = skill["id"]
     end
   end
 
@@ -23,7 +23,7 @@ class SkillWithRating
     user.cohort.skills.map(&:attributes)
   end
 
-  def as_json(options={})
+  def as_json(_options={})
     attributes
   end
 end
